@@ -1,0 +1,13 @@
+#!/bin/sh
+# CIJOE
+#
+# Put this file to $PROJECT/.git/hooks/ for email notifications.
+#
+# Do not forget: chmod +x build-failed
+SHA=$SHA
+AUTHOR=$AUTHOR
+MESSAGE=$MESSAGE
+OUTPUT=$OUTPUT
+
+# update the path below, this script sends an email using mad mimi
+ruby /data/YOUR_APPLICATION_NAME/current/lib/mailer.rb

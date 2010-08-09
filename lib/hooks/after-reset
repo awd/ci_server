@@ -1,0 +1,18 @@
+#!/bin/sh
+# CIJOE
+#
+# Put this file to $PROJECT/.git/hooks/ for after pull changes.
+#
+# symlink the database connections yaml
+export SHARED_DB="/data/APP_NAME_HERE/shared/config/database.yml"
+export REPO_DB="/data/APP_NAME_HERE/current/repos/REPO_NAME_HERE/config/database.yml"
+
+rm -rf $REPO_DB
+
+ln -s $SHARED_DB $REPO_DB
+
+# configure the databases
+export RAILS_ENV=staging
+rake db:create:all
+rake db:migrate
+rake db:test:prepare

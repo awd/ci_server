@@ -1,0 +1,28 @@
+README
+
+This is a Rack Application.
+It configures and runs an instance of CI Joe
+on a single application repository.
+
+Configure the following files with settings specific to your needs.
+
+config.ru
+- update REPO_NAME
+
+deploy/after_restart.rb
+- update REPO_NAME
+- update BRANCH_NAME
+
+lib/hooks/after-reset
+- update SHARED_DB path (ie: /data/APP_NAME_HERE/shared/config/database.yml)
+- update CURRENT_DB path (ie: /data/APP_NAME_HERE/current/repos/REPO_NAME_HERE/config/database.yml)
+
+lib/hooks/build-failed
+- update path to mailer.rb (ie: /data/APP_NAME_HERE/current/lib/mailer.rb)
+- this ruby script emails us the details, however, since build-failed is a shell
+  script, you can use normal command line tools as well
+  
+lib/mailer.rb
+- update the Sender and Receiver email addresses
+- we use Mad Mimi, but you can replace this with ActionMailer, or any
+  other 3rd party emailer
